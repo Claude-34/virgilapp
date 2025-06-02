@@ -1,15 +1,14 @@
-// lib/screens/login_screen.dart
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:biometric_attendance_app/services/app_state.dart';
+import 'package:virgilapp/services/app_state.dart';
 
 class LoginScreen extends StatelessWidget {
   final LocalAuthentication _auth = LocalAuthentication();
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context, listen: false);
+    // final appState = Provider.of<AppState>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Biometric Attendance')),

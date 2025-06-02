@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:biometric_attendance_app/models/student.dart';
-import 'package:biometric_attendance_app/models/attendance_record.dart';
-import 'package:intl/intl.dart'; // For date/time formatting
+// import 'package:biometric_attendance_app/models/student.dart';
+// import 'package:biometric_attendance_app/models/attendance_record.dart';
+import 'package:intl/intl.dart';
+import 'package:virgilapp/models/attendance_record.dart';
+import 'package:virgilapp/models/student.dart'; // For date/time formatting
 
 class AppState with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -1,11 +1,7 @@
-// lib/screens/dashboard_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:biometric_attendance_app/services/app_state.dart';
-import 'package:biometric_attendance_app/screens/add_student_form.dart';
-import 'package:biometric_attendance_app/screens/student_list.dart';
-import 'package:biometric_attendance_app/screens/attendance_recorder.dart';
-import 'package:biometric_attendance_app/screens/attendance_history.dart';
+import 'package:virgilapp/services/app_state.dart';
+
 
 class DashboardScreen extends StatefulWidget {
   @override

@@ -1,8 +1,6 @@
-// lib/screens/student_list.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:biometric_attendance_app/services/app_state.dart';
-import 'package:biometric_attendance_app/models/student.dart';
+
 
 import '../services/app_state.dart';
 

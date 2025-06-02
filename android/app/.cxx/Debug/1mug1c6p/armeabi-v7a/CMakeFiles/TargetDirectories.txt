@@ -1,0 +1,2 @@
+C:/Users/cliff/Desktop/Flutter/virgilapp/android/app/.cxx/Debug/1mug1c6p/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/cliff/Desktop/Flutter/virgilapp/android/app/.cxx/Debug/1mug1c6p/armeabi-v7a/CMakeFiles/rebuild_cache.dir

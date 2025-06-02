@@ -1,7 +1,6 @@
-// lib/screens/add_student_form.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:biometric_attendance_app/services/app_state.dart';
+import 'package:virgilapp/services/app_state.dart';
 
 class AddStudentForm extends StatefulWidget {
   @override

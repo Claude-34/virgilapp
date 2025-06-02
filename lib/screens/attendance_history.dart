@@ -1,9 +1,9 @@
-// lib/screens/attendance_history.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:biometric_attendance_app/services/app_state.dart';
-import 'package:biometric_attendance_app/models/attendance_record.dart';
+
 import 'package:intl/intl.dart';
+import 'package:virgilapp/models/attendance_record.dart';
+import 'package:virgilapp/services/app_state.dart';
 
 class AttendanceHistory extends StatefulWidget {
   @override
