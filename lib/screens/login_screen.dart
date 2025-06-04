@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
     // final appState = Provider.of<AppState>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Biometric Attendance')),
+      appBar: AppBar(title: const Text('Biometric Student Attendance')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -35,10 +35,14 @@ class LoginScreen extends StatelessWidget {
               ElevatedButton.icon(
                 onPressed: () async {
                   try {
+                    bool isSupported = await _auth.isDeviceSupported();
                     bool canCheckBiometrics = await _auth.canCheckBiometrics;
-                    if (!canCheckBiometrics) {
+
+                    if (!isSupported || !canCheckBiometrics) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Biometrics not available on this device.')),
+                        const SnackBar(
+                            content: Text(
+                                'Biometrics not available on this device.')),
                       );
                       return;
                     }
@@ -47,33 +51,42 @@ class LoginScreen extends StatelessWidget {
                       localizedReason: 'Scan your fingerprint or face to login',
                       options: const AuthenticationOptions(
                         stickyAuth: true,
-                        biometricOnly: true, // Only allow biometrics, no fallback to PIN
+                        biometricOnly:
+                            true, // Only allow biometrics, no fallback to PIN
                       ),
                     );
 
                     if (authenticated) {
                       // The authStateChanges listener in AppState will handle navigation after sign-in.
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Authentication successful! Logging in...')),
+                        const SnackBar(
+                            content: Text(
+                                'Authentication successful! Logging in...')),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Biometric authentication failed or cancelled.')),
+                        const SnackBar(
+                            content: Text(
+                                'Biometric authentication failed or cancelled.')),
                       );
                     }
                   } catch (e) {
                     print("Error during biometric authentication: $e");
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Authentication error: ${e.toString()}')),
+                      SnackBar(
+                          content:
+                              Text('Authentication error: ${e.toString()}')),
                     );
                   }
                 },
                 icon: const Icon(Icons.lock_open),
                 label: const Text('Authenticate with Biometrics'),
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   textStyle: const TextStyle(fontSize: 18),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   elevation: 5,
                 ),
               ),

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virgilapp/services/app_state.dart';
-
+import 'package:virgilapp/screens/add_student_form.dart';
+import 'package:virgilapp/screens/student_list.dart';
+import 'package:virgilapp/screens/attendance_recorder.dart';
+import 'package:virgilapp/screens/attendance_history.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProviderStateMixin {
+class _DashboardScreenState extends State<DashboardScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -27,6 +31,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Attendance Dashboard'),
         actions: [
@@ -55,7 +60,9 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
           tabs: const [
             Tab(text: 'Add Student', icon: Icon(Icons.person_add)),
             Tab(text: 'View Students', icon: Icon(Icons.people)),
-            Tab(text: 'Record Attendance', icon: Icon(Icons.check_circle_outline)),
+            Tab(
+                text: 'Record Attendance',
+                icon: Icon(Icons.check_circle_outline)),
             Tab(text: 'Attendance History', icon: Icon(Icons.history)),
           ],
         ),
@@ -69,14 +76,16 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
           AttendanceHistory(),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddStudentScreen()),
+          );
+        },
+        tooltip: 'Add Student',
+        child: Icon(Icons.person_add),
+      ),
     );
   }
-  
-  AddStudentForm() {}
-  
-  StudentList() {}
-  
-  AttendanceRecorder() {}
-  
-  AttendanceHistory() {}
 }

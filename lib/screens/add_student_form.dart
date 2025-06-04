@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:virgilapp/services/app_state.dart';
+import 'add_student_form.dart'; // If you're importing it from another fil
+
+class AddStudentScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add New Student"),
+      ),
+      body: AddStudentForm(), // This is the form widget
+    );
+  }
+}
 
 class AddStudentForm extends StatefulWidget {
   @override
@@ -24,7 +37,7 @@ class _AddStudentFormState extends State<AddStudentForm> {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context, listen: false);
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,7 +52,8 @@ class _AddStudentFormState extends State<AddStudentForm> {
             controller: _nameController,
             decoration: InputDecoration(
               labelText: 'Student Name',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               prefixIcon: const Icon(Icons.person),
             ),
           ),
@@ -48,7 +62,8 @@ class _AddStudentFormState extends State<AddStudentForm> {
             controller: _studentIdController,
             decoration: InputDecoration(
               labelText: 'Student ID (Unique)',
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               prefixIcon: const Icon(Icons.badge),
             ),
           ),
@@ -57,7 +72,8 @@ class _AddStudentFormState extends State<AddStudentForm> {
               ? const Center(child: CircularProgressIndicator())
               : ElevatedButton.icon(
                   onPressed: () async {
-                    if (_nameController.text.isEmpty || _studentIdController.text.isEmpty) {
+                    if (_nameController.text.isEmpty ||
+                        _studentIdController.text.isEmpty) {
                       setState(() => _message = 'Please fill all fields.');
                       return;
                     }
@@ -66,14 +82,18 @@ class _AddStudentFormState extends State<AddStudentForm> {
                       _message = null;
                     });
                     try {
-                      await appState.addStudent(_nameController.text, _studentIdController.text);
+                      await appState.addStudent(
+                        _nameController.text,
+                        _studentIdController.text,
+                      );
                       setState(() {
                         _message = 'Student added successfully!';
                         _nameController.clear();
                         _studentIdController.clear();
                       });
                     } catch (e) {
-                      setState(() => _message = 'Error: ${e.toString().split(':')[1]}');
+                      setState(() =>
+                          _message = 'Error: ${e.toString().split(':').last}');
                     } finally {
                       setState(() => _isLoading = false);
                     }
@@ -83,7 +103,8 @@ class _AddStudentFormState extends State<AddStudentForm> {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     textStyle: const TextStyle(fontSize: 18),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
                 ),
           if (_message != null)
@@ -91,7 +112,11 @@ class _AddStudentFormState extends State<AddStudentForm> {
               padding: const EdgeInsets.only(top: 20),
               child: Text(
                 _message!,
-                style: TextStyle(color: _message!.startsWith('Error') ? Colors.red : Colors.green, fontSize: 16),
+                style: TextStyle(
+                  color:
+                      _message!.startsWith('Error') ? Colors.red : Colors.green,
+                  fontSize: 16,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
